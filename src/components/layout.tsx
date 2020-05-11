@@ -1,12 +1,11 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+
+import 'typeface-roboto';
+
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from '../theme';
 
 import Header from './header';
 import './layout.css';
@@ -25,13 +24,15 @@ const Layout = ({ children }: LayoutProps) => {
   `);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+      <CssBaseline />
       <Header siteTitle={data.site.siteMetadata.title} />
       <div
         style={{
           margin: `0 auto`,
           maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          padding: `0 1.0875rem 1.45rem`
         }}
       >
         <main>{children}</main>
@@ -41,7 +42,7 @@ const Layout = ({ children }: LayoutProps) => {
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
       </div>
-    </>
+    </ThemeProvider>
   );
 };
 
