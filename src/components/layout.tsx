@@ -5,9 +5,13 @@ import 'typeface-roboto';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 import theme from '../theme';
 
 import Header from './header';
+import Footer from './footer';
 import './layout.css';
 
 type LayoutProps = { children: React.ReactNode };
@@ -25,23 +29,19 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <ThemeProvider theme={theme}>
-      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+      <Container>
+        <Grid>
+          <Grid item>{children}</Grid>
+          <Grid item>
+            <Divider />
+          </Grid>
+          <Grid item>
+            <Footer />
+          </Grid>
+        </Grid>
+      </Container>
     </ThemeProvider>
   );
 };
